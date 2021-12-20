@@ -18,10 +18,17 @@
             maxlength="200"
           />
         </div>
+        <div class="input-block__input">
+          <BaseSelect
+            :options="['Blue', 'Pink', 'Green']"
+            v-model="formData.backgroundColor"
+            label="Page color"
+          />
+        </div>
       </div>
     </div>
     <div class="result">
-      <div class="result__page">
+      <div class="result__page" :class="`result__page--${pageColorClass}`">
         <div class="result__title">
           {{ formData.title }}
         </div>
@@ -34,20 +41,26 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 
 export default {
   name: "App",
   setup() {
     const formData = reactive({
-      title: "Request...",
+      title: "A Tale...",
+      backgroundColor: "Blue",
       desc: `Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
 
 Separated they live in Bookmarksgrove right at the coast of the Semantics, a large`,
     });
 
+    const pageColorClass = computed(() => {
+      return formData.backgroundColor.toLowerCase();
+    });
+
     return {
       formData,
+      pageColorClass,
     };
   },
 };
@@ -58,7 +71,9 @@ Separated they live in Bookmarksgrove right at the coast of the Semantics, a lar
   --color-white: #fff;
   --color-border: #8c92ac;
   --color-active: #a8b8ff;
-  --color-result-page: #f2ffff;
+  --color-result-page-1: #ebffff;
+  --color-result-page-2: #fff0f5;
+  --color-result-page-3: #eaffe4;
   --color-text: #2c3e50;
 }
 
@@ -80,31 +95,48 @@ body {
   margin: 20px auto;
   width: 100%;
   flex-direction: column;
+  align-items: center;
 
   @media (min-width: 1200px) {
     width: 1000px;
     flex-direction: row;
+    align-items: unset;
   }
 }
 
 .result {
-  width: 50%;
+  width: 100%;
   border: 1px solid var(--color-border);
-  border-left: none;
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  @media (min-width: 1200px) {
+    width: 50%;
+    flex-direction: row;
+    align-items: unset;
+    border-left: none;
+  }
+
   &__page {
     width: 140px;
     height: 190px;
     border: 1px solid var(--color-border);
-    background: var(--color-result-page);
     padding: 10px;
     border-radius: 5px;
     border-radius: 5px;
     box-shadow: 2px 2px 6px #d5d5d5;
+
+    &--blue {
+      background: var(--color-result-page-1);
+    }
+    &--pink {
+      background: var(--color-result-page-2);
+    }
+    &--green {
+      background: var(--color-result-page-3);
+    }
   }
 
   &__desc {
@@ -127,9 +159,15 @@ body {
 }
 
 .components-list {
-  width: 50%;
+  width: 100%;
   border: 1px solid var(--color-border);
   padding: 20px;
+
+  @media (min-width: 1200px) {
+    width: 50%;
+    flex-direction: row;
+    align-items: unset;
+  }
 }
 
 .input-block {

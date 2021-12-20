@@ -1,6 +1,6 @@
 <template>
   <div class="input">
-    <label class="input__label">
+    <label v-if="label" class="input__label">
       {{ label }}
     </label>
     <input

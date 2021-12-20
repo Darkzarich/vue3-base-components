@@ -1,14 +1,21 @@
 <template>
-  <div class="textarea">
-    <label v-if="label" class="textarea__label">
-      {{ label }}
-    </label>
-    <textarea
-      class="textarea__field"
+  <div class="select">
+    <label class="select__label" v-if="label">{{ label }}</label>
+    <select
+      class="select__field"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @change="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
-    />
+    >
+      <option
+        v-for="option in options"
+        :value="option"
+        :key="option"
+        :selected="option === modelValue"
+      >
+        {{ option }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -24,12 +31,16 @@ export default {
       type: [String, Number],
       default: "",
     },
+    options: {
+      type: [Array],
+      default: () => [],
+    },
   },
 };
 </script>
 
 <style lang="scss">
-.textarea {
+.select {
   position: relative;
 
   &__label {
@@ -47,9 +58,6 @@ export default {
     border-radius: 3px;
     border: 1px solid var(--color-active);
     color: var(--color-text);
-    resize: none;
-    min-width: 300px;
-    min-height: 120px;
 
     &:focus,
     &:hover {
