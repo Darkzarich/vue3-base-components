@@ -1,6 +1,6 @@
 # vue3-base-components
 
-Hello!
+Hello! 😉
 
 In this repository, I created some base components with Vue 3 that can be re-used and adapted for different projects using some of the good practices.
 
