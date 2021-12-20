@@ -18,12 +18,20 @@
             maxlength="200"
           />
         </div>
-        <div class="input-block__input">
-          <BaseSelect
-            :options="['Blue', 'Pink', 'Green']"
-            v-model="formData.backgroundColor"
-            label="Page color"
-          />
+        <div class="input-block__input-group">
+          <div class="input-block__input">
+            <BaseSelect
+              :options="['Blue', 'Pink', 'Green']"
+              v-model="formData.backgroundColor"
+              label="Page color"
+            />
+          </div>
+          <div class="input-block__input">
+            <BaseCheckbox
+              label="Is copyrighted?"
+              v-model="formData.copyright"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -35,6 +43,7 @@
         <div class="result__desc">
           <pre>{{ formData.desc }}</pre>
         </div>
+        <div v-if="formData.copyright" class="result__copyright">©</div>
       </div>
     </div>
   </div>
@@ -49,6 +58,7 @@ export default {
     const formData = reactive({
       title: "A Tale...",
       backgroundColor: "Blue",
+      copyright: true,
       desc: `Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
 
 Separated they live in Bookmarksgrove right at the coast of the Semantics, a large`,
@@ -69,6 +79,7 @@ Separated they live in Bookmarksgrove right at the coast of the Semantics, a lar
 <style lang="scss">
 :root {
   --color-white: #fff;
+  --color-black: #000;
   --color-border: #8c92ac;
   --color-active: #a8b8ff;
   --color-result-page-1: #ebffff;
@@ -127,6 +138,7 @@ body {
     border-radius: 5px;
     border-radius: 5px;
     box-shadow: 2px 2px 6px #d5d5d5;
+    position: relative;
 
     &--blue {
       background: var(--color-result-page-1);
@@ -156,6 +168,16 @@ body {
     font-size: 12px;
     text-align: center;
   }
+
+  &__copyright {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 45px;
+    font-family: "Roboto";
+    color: rgba(0, 0, 0, 0.3);
+    user-select: none;
+  }
 }
 
 .components-list {
@@ -173,6 +195,14 @@ body {
 .input-block {
   &__input {
     margin-bottom: 20px;
+  }
+
+  &__input-group {
+    display: flex;
+
+    .input-block__input {
+      margin-right: 30px;
+    }
   }
 }
 </style>
