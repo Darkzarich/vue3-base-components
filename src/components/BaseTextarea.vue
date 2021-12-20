@@ -1,10 +1,10 @@
 <template>
-  <div class="input">
-    <label class="input__label">
+  <div class="textarea">
+    <label class="textarea__label">
       {{ label }}
     </label>
-    <input
-      class="input__field"
+    <textarea
+      class="textarea__field"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
-.input {
+.textarea {
   position: relative;
 
   &__label {
@@ -47,6 +47,9 @@ export default {
     border-radius: 3px;
     border: 1px solid var(--color-active);
     color: var(--color-text);
+    resize: none;
+    min-width: 300px;
+    min-height: 120px;
 
     &:focus,
     &:hover {
