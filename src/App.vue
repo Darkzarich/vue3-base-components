@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="components-list">
-      <div class="input-block">
+      <!-- It's much better for a11i to listen submit event on the form 
+      than @click on button that submits -->
+      <form class="input-block" @submit.prevent="onSubmit()">
         <div class="input-block__input">
           <BaseInput
             v-model="formData.title"
@@ -46,7 +48,10 @@
             v-model="formData.thickness"
           />
         </div>
-      </div>
+        <div class="input-block__input">
+          <BaseButton :loading="loading" type="submit"> Submit </BaseButton>
+        </div>
+      </form>
     </div>
     <div class="result">
       <div
@@ -71,11 +76,12 @@
 </template>
 
 <script>
-import { reactive, computed } from "vue";
+import { reactive, ref, computed } from "vue";
 
 export default {
   name: "App",
   setup() {
+    const loading = ref(false);
     const formData = reactive({
       title: "A Tale...",
       backgroundColor: "Blue",
@@ -90,9 +96,19 @@ Separated they live in Bookmarksgrove right at the coast of the Semantics, a lar
       return formData.backgroundColor.toLowerCase();
     });
 
+    const onSubmit = () => {
+      loading.value = true;
+      setTimeout(() => {
+        window.alert(JSON.stringify(formData));
+        loading.value = false;
+      }, 4000);
+    };
+
     return {
       formData,
+      loading,
       pageColorClass,
+      onSubmit,
     };
   },
 };
