@@ -33,10 +33,30 @@
             />
           </div>
         </div>
+        <div class="input-block__input-group">
+          <div class="input-block__input">Thinkness:</div>
+          <div class="input-block__input">
+            <BaseRadio v-model="formData.thickness" label="1" :value="1" />
+          </div>
+          <div class="input-block__input">
+            <BaseRadio v-model="formData.thickness" :value="2" label="2" />
+          </div>
+          <div class="input-block__input">
+            <BaseRadio v-model="formData.thickness" label="3" :value="3" />
+          </div>
+        </div>
       </div>
     </div>
     <div class="result">
-      <div class="result__page" :class="`result__page--${pageColorClass}`">
+      <div
+        class="result__page"
+        :class="`result__page--${pageColorClass}`"
+        :style="{
+          boxShadow: `2px 2px 0px ${
+            1 * formData.thickness
+          }px var(--color-border)`,
+        }"
+      >
         <div class="result__title">
           {{ formData.title }}
         </div>
@@ -59,6 +79,7 @@ export default {
       title: "A Tale...",
       backgroundColor: "Blue",
       copyright: true,
+      thickness: 1,
       desc: `Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
 
 Separated they live in Bookmarksgrove right at the coast of the Semantics, a large`,
@@ -105,7 +126,7 @@ body {
   display: flex;
   margin: 20px auto;
   width: 100%;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
 
   @media (min-width: 1200px) {
@@ -137,7 +158,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 2px 2px 6px #d5d5d5;
+    box-shadow: 2px 2px 0px 1px var(--color-border);
     position: relative;
 
     &--blue {
@@ -199,6 +220,7 @@ body {
 
   &__input-group {
     display: flex;
+    margin-bottom: 20px;
 
     .input-block__input {
       margin-right: 30px;

@@ -1,13 +1,13 @@
 <template>
-  <label class="checkbox">
+  <label class="radio">
     <input
-      type="checkbox"
-      :checked="modelValue"
-      @change="$emit('update:modelValue', !modelValue)"
+      type="radio"
+      :checked="modelValue === value"
+      @change="$emit('update:modelValue', value)"
+      class="radio__field"
       v-bind="$attrs"
-      class="checkbox__field"
     />
-    <span class="checkbox__mark" />
+    <span class="radio__mark" />
     {{ label }}
   </label>
 </template>
@@ -20,15 +20,19 @@ export default {
       default: "",
     },
     modelValue: {
-      type: Boolean,
-      default: false,
+      type: [String, Number],
+      default: "",
+    },
+    value: {
+      type: [String, Number],
+      required: true,
     },
   },
 };
 </script>
 
 <style lang="scss">
-.checkbox {
+.radio {
   position: relative;
   color: var(--color-border);
   display: flex;
@@ -39,14 +43,12 @@ export default {
     appearance: none;
     margin: 0;
 
-    &:checked ~ .checkbox__mark {
-      background: var(--color-white);
-
-      &:before {
-        content: "✓";
-        color: var(--color-text);
-        font-weight: bold;
-      }
+    &:checked ~ .radio__mark:before {
+      background: var(--color-text);
+      content: "";
+      width: 50%;
+      height: 50%;
+      border-radius: 50%;
     }
   }
 
@@ -57,6 +59,7 @@ export default {
     width: 20px;
     height: 20px;
     border: 1px solid var(--color-border);
+    border-radius: 50%;
     margin-right: 10px;
   }
 }
