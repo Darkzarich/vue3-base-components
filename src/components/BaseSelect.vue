@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  emits: ["update"],
+  emits: ["update:modelValue"],
   props: {
     label: {
       type: String,

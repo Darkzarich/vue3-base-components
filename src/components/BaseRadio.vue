@@ -5,7 +5,7 @@
       :checked="modelValue === value"
       @change="$emit('update:modelValue', value)"
       class="radio__field"
-      v-bind="$attrs"
+      v-bind="{ ...$attrs, class: '' }"
     />
     <span class="radio__mark" />
     {{ label }}
@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  emits: ["update:modelValue"],
   props: {
     label: {
       type: String,

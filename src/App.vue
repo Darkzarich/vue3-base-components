@@ -35,15 +35,16 @@
         </div>
         <div class="input-block__input-group">
           <div class="input-block__input">Thinkness:</div>
-          <div class="input-block__input">
-            <BaseRadio v-model="formData.thickness" label="1" :value="1" />
-          </div>
-          <div class="input-block__input">
-            <BaseRadio v-model="formData.thickness" :value="2" label="2" />
-          </div>
-          <div class="input-block__input">
-            <BaseRadio v-model="formData.thickness" label="3" :value="3" />
-          </div>
+          <BaseRadioGroup
+            class="input-block__input"
+            :options="[
+              { label: '1', value: 1 },
+              { label: '2', value: 2 },
+              { label: '3', value: 3 },
+            ]"
+            name="thickness"
+            v-model="formData.thickness"
+          />
         </div>
       </div>
     </div>
