@@ -164,7 +164,7 @@ body {
   @media (min-width: 1200px) {
     width: 50%;
     flex-direction: row;
-    align-items: unset;
+    align-items: center;
     border-left: none;
   }
 

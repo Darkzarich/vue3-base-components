@@ -1,9 +1,10 @@
 <template>
   <div class="textarea">
-    <label v-if="label" class="textarea__label">
+    <label v-if="label" :for="`input${uuid}`" class="textarea__label">
       {{ label }}
     </label>
     <textarea
+      :id="`input${uuid}`"
       class="textarea__field"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
@@ -13,6 +14,8 @@
 </template>
 
 <script>
+import getID from "@/UniqueId.js";
+
 export default {
   emits: ["update:modelValue"],
   props: {
@@ -24,6 +27,13 @@ export default {
       type: [String, Number],
       default: "",
     },
+  },
+  setup() {
+    const uuid = getID();
+
+    return {
+      uuid,
+    };
   },
 };
 </script>

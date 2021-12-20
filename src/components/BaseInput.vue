@@ -1,18 +1,31 @@
 <template>
   <div class="input">
-    <label v-if="label" class="input__label">
+    <label v-if="label" :for="`input${uuid}`" class="input__label">
       {{ label }}
     </label>
     <input
       class="input__field"
+      :id="`input${uuid}`"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
+      :aria-describedby="error ? `input-error${uuid}` : null"
+      :aria-invalid="error ? true : null"
     />
+    <p
+      class="input__error"
+      v-if="error"
+      :id="`input-error${uuid}`"
+      aria-live="assertive"
+    >
+      {{ error }}
+    </p>
   </div>
 </template>
 
 <script>
+import getID from "@/UniqueId.js";
+
 export default {
   emits: ["update:modelValue"],
   props: {
@@ -24,6 +37,17 @@ export default {
       type: [String, Number],
       default: "",
     },
+    error: {
+      type: String,
+      default: "",
+    },
+  },
+  setup() {
+    const uuid = getID();
+
+    return {
+      uuid,
+    };
   },
 };
 </script>

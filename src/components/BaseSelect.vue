@@ -1,7 +1,10 @@
 <template>
   <div class="select">
-    <label class="select__label" v-if="label">{{ label }}</label>
+    <label :for="`input${uuid}`" class="select__label" v-if="label">{{
+      label
+    }}</label>
     <select
+      :id="`input${uuid}`"
       class="select__field"
       :value="modelValue"
       @change="$emit('update:modelValue', $event.target.value)"
@@ -20,6 +23,8 @@
 </template>
 
 <script>
+import getID from "@/UniqueId.js";
+
 export default {
   emits: ["update:modelValue"],
   props: {
@@ -35,6 +40,13 @@ export default {
       type: [Array],
       default: () => [],
     },
+  },
+  setup() {
+    const uuid = getID();
+
+    return {
+      uuid,
+    };
   },
 };
 </script>
