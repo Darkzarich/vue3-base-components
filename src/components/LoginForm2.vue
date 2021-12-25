@@ -1,19 +1,20 @@
 <template>
-  <form class="login-form" @submit.prevent="onSubmit">
+  <!-- .prevent modifier can be left out vee-validate will handle it for us -->
+  <form class="login-form" @submit="onSubmit">
     <h3 class="login-form__title">Login</h3>
     <BaseInput
       class="login-form__field"
       label="Email"
       type="email"
       v-model="email"
-      :error="emailError"
+      :error="errors.email"
     />
     <BaseInput
       v-model="password"
       class="login-form__field"
       label="Password"
       type="password"
-      :error="passwordError"
+      :error="errors.password"
     />
     <BaseButton class="login-form__field" type="submit"> Submit </BaseButton>
   </form>
@@ -26,43 +27,66 @@ export default {
   setup() {
     // Full Form validation
 
-    function onSubmit() {
-      alert("submit");
-    }
-
     // Schema
+
+    const required = (value) => {
+      if (!value) return "This field is required";
+      return true;
+    };
+
+    const minLength = (value, number) => {
+      if (value.length < number) {
+        return `Must be at least ${number} characters long`;
+      }
+
+      return true;
+    };
+
+    const isEmail = (value) => {
+      if (value.indexOf("@") === -1) return "Email is invalid";
+
+      return true;
+    };
+
     const validation = {
       email: (value) => {
-        if (!value) return "This field is required";
+        const req = required(value);
+        if (req !== true) return req;
 
-        if (value.indexOf("@") === -1) return "Email is invalid";
+        const email = isEmail(value);
+        if (email !== true) return email;
 
         return true;
       },
       password: (value) => {
-        if (!value) return "This field is required";
+        const req = required(value);
+        if (req !== true) return req;
 
-        if (value.length < 8) {
-          return "Must be at least 8 characters long";
-        }
+        const min = minLength(value, 8);
+        if (min !== true) return min;
 
         return true;
       },
     };
 
-    useForm({
+    // errors will contain all errors in Record<string, string>
+    const { handleSubmit, errors } = useForm({
       validationSchema: validation,
     });
 
     const email = useField("email");
     const password = useField("password");
 
+    // Callback will not be executed if there are errors present
+    const submit = handleSubmit((values) => {
+      console.log("submit", values);
+    });
+
     return {
-      onSubmit,
+      onSubmit: submit,
       email: email.value,
-      emailError: email.errorMessage,
       password: password.value,
-      passwordError: password.errorMessage,
+      errors,
     };
   },
 };
