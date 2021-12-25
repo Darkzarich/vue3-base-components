@@ -2,9 +2,11 @@
 
 Hello! 😉
 
-In this repository, I created some base components with Vue 3 that can be re-used and adapted for different projects using some of the good practices.
+In this repository, I created some base components with **Vue 3** that can be re-used and adapted for different projects using some of the good practices.
 
 The list follows: `BaseButton`, `BaseCheckbox`, `BaseInput`, `BaseRadio`, `BaseRadioGroup`, `BaseSelect`, `BaseTextarea`
+
+Also provided base examples of using them with [vee-validate@next](https://vee-validate.logaretm.com/v4/)
 
 ## Few Accessibility tips to keep in mind:
 

@@ -5,6 +5,7 @@
     </label>
     <input
       class="input__field"
+      :class="{ 'input__field--error': Boolean(error) }"
       :id="`input${uuid}`"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
@@ -72,6 +73,10 @@ export default {
     border: 1px solid var(--color-active);
     color: var(--color-text);
 
+    &--error {
+      border-color: var(--color-red) !important;
+    }
+
     &:focus,
     &:hover {
       border: 1px solid var(--color-active);
@@ -82,6 +87,14 @@ export default {
       border-bottom: 2px solid var(--color-active);
       padding-bottom: 11px;
     }
+  }
+
+  &__error {
+    font-size: 12px;
+    margin: 0;
+    margin-top: -4px;
+    margin-bottom: 15px;
+    color: var(--color-red);
   }
 }
 </style>

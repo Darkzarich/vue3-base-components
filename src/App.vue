@@ -73,13 +73,20 @@
       </div>
     </div>
   </div>
+  <div class="container">
+    <LoginForm />
+  </div>
 </template>
 
 <script>
+import LoginForm from "@/components/LoginForm.vue";
 import { reactive, ref, computed } from "vue";
 
 export default {
   name: "App",
+  components: {
+    LoginForm,
+  },
   setup() {
     const loading = ref(false);
     const formData = reactive({
@@ -124,6 +131,7 @@ Separated they live in Bookmarksgrove right at the coast of the Semantics, a lar
   --color-result-page-2: #fff0f5;
   --color-result-page-3: #eaffe4;
   --color-text: #2c3e50;
+  --color-red: rgb(255, 93, 93);
 }
 
 body {
@@ -136,7 +144,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-text);
   margin-top: 60px;
-  display: flex;
 }
 
 .container {

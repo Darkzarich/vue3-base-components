@@ -23,9 +23,10 @@ export default {
 .button {
   padding: 10px;
   background: var(--color-white);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-active);
   min-width: 100px;
   border-radius: 5px;
+  color: var(--color-border);
 
   @keyframes sparkle {
     0% {
@@ -46,6 +47,7 @@ export default {
 
   &:hover {
     background: var(--color-active);
+    color: var(--color-white);
     cursor: pointer;
   }
 }

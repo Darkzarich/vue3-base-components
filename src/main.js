@@ -1,13 +1,13 @@
 import { createApp } from "vue";
 import App from "./App";
 
-import BaseButton from "@/components/BaseButton";
-import BaseInput from "@/components/BaseInput";
-import BaseTextarea from "@/components/BaseTextarea";
-import BaseSelect from "@/components/BaseSelect";
-import BaseCheckbox from "@/components/BaseCheckbox";
-import BaseRadio from "@/components/BaseRadio";
-import BaseRadioGroup from "@/components/BaseRadioGroup";
+import BaseButton from "@/components/Base/BaseButton";
+import BaseInput from "@/components/Base/BaseInput";
+import BaseTextarea from "@/components/Base/BaseTextarea";
+import BaseSelect from "@/components/Base/BaseSelect";
+import BaseCheckbox from "@/components/Base/BaseCheckbox";
+import BaseRadio from "@/components/Base/BaseRadio";
+import BaseRadioGroup from "@/components/Base/BaseRadioGroup";
 
 const app = createApp(App);
 
