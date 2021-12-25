@@ -20,42 +20,42 @@
 </template>
 
 <script>
-import { useField } from "vee-validate";
+import { useField, useForm } from "vee-validate";
 
 export default {
   setup() {
-    // Single field validation
+    // Full Form validation
 
-    async function onSubmit() {
-      const [res1, res2] = await Promise.all([
-        email.validate(),
-        password.validate(),
-      ]);
-
-      if (res1.errors.length || res2.errors.length) {
-        alert("The form is invalid and cannot be submitted.");
-      } else {
-        alert("Submitted.");
-      }
+    function onSubmit() {
+      alert("submit");
     }
 
-    const email = useField("email", (value) => {
-      if (!value) return "This field is required";
+    // Schema
+    const validation = {
+      email: (value) => {
+        if (!value) return "This field is required";
 
-      if (value.indexOf("@") === -1) return "Email is invalid";
+        if (value.indexOf("@") === -1) return "Email is invalid";
 
-      return true;
+        return true;
+      },
+      password: (value) => {
+        if (!value) return "This field is required";
+
+        if (value.length < 8) {
+          return "Must be at least 8 characters long";
+        }
+
+        return true;
+      },
+    };
+
+    useForm({
+      validationSchema: validation,
     });
 
-    const password = useField("password", (value) => {
-      if (!value) return "This field is required";
-
-      if (value.length < 8) {
-        return "Must be at least 8 characters long";
-      }
-
-      return true;
-    });
+    const email = useField("email");
+    const password = useField("password");
 
     return {
       onSubmit,

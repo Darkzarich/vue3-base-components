@@ -76,16 +76,21 @@
   <div class="container">
     <LoginForm />
   </div>
+  <div class="container">
+    <LoginForm2 />
+  </div>
 </template>
 
 <script>
 import LoginForm from "@/components/LoginForm.vue";
+import LoginForm2 from "@/components/LoginForm2.vue";
 import { reactive, ref, computed } from "vue";
 
 export default {
   name: "App",
   components: {
     LoginForm,
+    LoginForm2,
   },
   setup() {
     const loading = ref(false);
