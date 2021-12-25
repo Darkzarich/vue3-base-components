@@ -2,11 +2,11 @@
 
 Hello! 😉
 
-In this repository, I created some base components with **Vue 3** that can be re-used and adapted for different projects using some of the good practices.
+In this repository, I created some well tested base components using some of the good practices with **Vue 3** that can be re-used and adapted for different projects.
 
 The list follows: `BaseButton`, `BaseCheckbox`, `BaseInput`, `BaseRadio`, `BaseRadioGroup`, `BaseSelect`, `BaseTextarea`
 
-Also provided base examples of using them with [vee-validate@next](https://vee-validate.logaretm.com/v4/)
+Also provided base examples of using them with **[vee-validate@next]**(https://vee-validate.logaretm.com/v4/) (one of the forms uses schema builder **[Yup]**(https://www.npmjs.com/package/yup), just for the practice purposes)
 
 ## Few Accessibility tips to keep in mind:
 

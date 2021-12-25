@@ -1,7 +1,7 @@
 <template>
   <!-- .prevent modifier can be left out vee-validate will handle it for us -->
   <form class="login-form" @submit="onSubmit">
-    <h3 class="login-form__title">Login (useForm)</h3>
+    <h3 class="login-form__title">Login (Yup)</h3>
     <BaseInput
       class="login-form__field"
       label="Email"
@@ -22,52 +22,17 @@
 
 <script>
 import { useField, useForm } from "vee-validate";
+import { object, string } from "yup";
 
 export default {
   setup() {
-    // Full Form validation
+    // Full Form validation with Yup
 
     // Schema
-
-    const required = (value) => {
-      if (!value) return "This field is required";
-      return true;
-    };
-
-    const minLength = (value, number) => {
-      if (value.length < number) {
-        return `Must be at least ${number} characters long`;
-      }
-
-      return true;
-    };
-
-    const isEmail = (value) => {
-      if (value.indexOf("@") === -1) return "Email is invalid";
-
-      return true;
-    };
-
-    const validation = {
-      email: (value) => {
-        const req = required(value);
-        if (req !== true) return req;
-
-        const email = isEmail(value);
-        if (email !== true) return email;
-
-        return true;
-      },
-      password: (value) => {
-        const req = required(value);
-        if (req !== true) return req;
-
-        const min = minLength(value, 8);
-        if (min !== true) return min;
-
-        return true;
-      },
-    };
+    const validation = object({
+      email: string().email().required(),
+      password: string().min(8),
+    });
 
     // errors will contain all errors in Record<string, string>
     const { handleSubmit, errors } = useForm({

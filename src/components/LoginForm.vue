@@ -1,6 +1,6 @@
 <template>
   <form class="login-form" @submit.prevent="onSubmit">
-    <h3 class="login-form__title">Login</h3>
+    <h3 class="login-form__title">Login (useField)</h3>
     <BaseInput
       class="login-form__field"
       label="Email"
