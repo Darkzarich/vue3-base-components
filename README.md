@@ -28,3 +28,16 @@ In case you don't want to have this tag visible you can always move it *absolute
 6. When there is an error in input relying on quite widely used red border is a not *accessible* way to go about it. We can notify screen readers about invalid state of an input with `aria-invalid="true"` attribute.
 
 7: Disabling buttons is bad, it makes them invisible for screen readers
+
+## Few tips about testing in Vue
+
+1. Test public interface of a component: inputs (props, user interactions, lifecycle methods) 
+and outputs (events, rendered output). Sometimes you could test the boundaries between the parent and the child components.
+
+2. If we have a logic in a component, we probably wanna test it
+
+3. Implementation details are not something you should test 
+(we test that the result with given outputs is what it should be, how it does that inside is out of our concern)
+
+4. Don't test the functionality of the packages and frameworks, those should be well tested already, we should trust them as is
+
