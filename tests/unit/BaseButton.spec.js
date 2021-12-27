@@ -4,7 +4,7 @@ import BaseButton from "@/components/Base/BaseButton.vue";
 describe("BaseButton.vue", () => {
   it("renders a button", () => {
     const wrapper = shallowMount(BaseButton);
-    expect(wrapper.find("button")).toBeTruthy();
+    expect(wrapper.find("button").exists()).toBe(true);
   });
 
   // Probably shouldn't be tested as it tests the framework
