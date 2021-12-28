@@ -8,7 +8,7 @@ describe("BaseRadio.vue", () => {
     expect(wrapper.find('input[type="radio"]').exists()).toBe(true);
   });
 
-  it("renders a :label of a checkbox", () => {
+  it("renders a :label of a radio", () => {
     const label = "My label";
     const wrapper = shallowMount(BaseRadio, {
       props: {
@@ -20,7 +20,7 @@ describe("BaseRadio.vue", () => {
     expect(wrapper.text()).toContain(label);
   });
 
-  it("emits passed value on @update:modelValue", async () => {
+  it("emits @update:modelValue with passed value on click", async () => {
     const value = 1;
     const wrapper = shallowMount(BaseRadio, {
       props: {
@@ -34,7 +34,7 @@ describe("BaseRadio.vue", () => {
     expect(wrapper.emitted()["update:modelValue"][0][0]).toBe(value);
   });
 
-  it("is checked if :modelValue and :value equal", async () => {
+  it("is selected if :modelValue and :value equal", async () => {
     const value = "yes";
     const wrapper = shallowMount(BaseRadio, {
       props: {

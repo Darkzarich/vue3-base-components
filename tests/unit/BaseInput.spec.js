@@ -18,12 +18,12 @@ describe("BaseInput.vue", () => {
     expect(wrapper.find('[id*="input-error"]').exists()).toBe(true);
   });
 
-  it("emits @update:modelValue on input with the input value", () => {
+  it("emits @update:modelValue on input with the input value", async () => {
     const wrapper = shallowMount(BaseInput);
     const input = wrapper.find("input");
     const str = "test";
 
-    input.setValue(str);
+    await input.setValue(str);
 
     expect(wrapper.emitted()["update:modelValue"][0][0]).toBe(str);
   });
