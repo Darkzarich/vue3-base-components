@@ -6,7 +6,7 @@ In this repository, I created some well tested base components using some of the
 
 The list follows: `BaseButton`, `BaseCheckbox`, `BaseInput`, `BaseRadio`, `BaseRadioGroup`, `BaseSelect`, `BaseTextarea`
 
-Also provided base examples of using them with **[vee-validate@next]**(https://vee-validate.logaretm.com/v4/) (one of the forms uses schema builder **[Yup]**(https://www.npmjs.com/package/yup), just for the practice purposes)
+Also provided base examples of using them with **[vee-validate@next](https://vee-validate.logaretm.com/v4/)** (one of the forms uses schema builder **[Yup](https://www.npmjs.com/package/yup)**, just for the practice purposes)
 
 ## Few Accessibility tips to keep in mind:
 
